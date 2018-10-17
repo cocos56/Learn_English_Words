@@ -1,0 +1,1 @@
+copy test.py 0000.py
