@@ -32,7 +32,7 @@ for i in range(title_len):
 k = 1
 j = 1
 for i in range(sheet1.nrows):
-    if(i%2 == 1):
+    if(i%2 == 0):
         worksheet.write(k, 0, sheet1.cell(i, 0).value)
         k += 1
         continue
