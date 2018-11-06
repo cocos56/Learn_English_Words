@@ -15,9 +15,10 @@ def remove_end_space(s):
     
     s = s[:length]
     return s
+if __name__ == '__main__':
+    s = 'abs'
+    s = s[0:1]
+    #s = remove_end_space(s)
+    print(s)
 
-# s = '2  2'
-# s = remove_end_space(s)
-# print(s)
-
-# print(len(s))
+    print(len(s))
