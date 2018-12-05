@@ -6,14 +6,15 @@ import datetime
 if __name__=='__main__':
         cwd = os.getcwd()
         myWordsDataFileDir = cwd+'\\Datas\\myWordsDat.json'
-        workbookDir = r'D:\0COCO\本科\大二上学期\英语三\Datas\ModifyXlsx\B3Unit5B.xlsx'
+        workbookDir = r'D:\0COCO\本科\大二上学期\英语三\Datas\ModifyXlsx\B3.xlsx'
+        worksheet = ['8A']
         if(os.path.exists(myWordsDataFileDir)):
                 with open(myWordsDataFileDir) as f:
                         myWordsData = json.load(f)
         else:
                 myWordsData = {}
         c = 0
-        lw = LW(cwd, myWordsData, workbookDir)
+        lw = LW(cwd, myWordsData, workbookDir, worksheet)
         while(1):
                 now_time = datetime.datetime.now()
                 total = lw.learnWithNumber()

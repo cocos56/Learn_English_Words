@@ -11,11 +11,11 @@ import datetime
 import re
 
 class LW():
-        def __init__(self, cwd, myWordsData, workbookDir):
+        def __init__(self, cwd, myWordsData, workbookDir, worksheet):
                 self.cwd = cwd
                 self.myWordsData = myWordsData
-                self.workbook = xlrd.open_workbook(r'D:\0COCO\本科\大二上学期\英语三\Datas\ModifyXlsx\B3.xlsx')
-                self.worksheet = ['8A']
+                self.workbook = xlrd.open_workbook(workbookDir)
+                self.worksheet = worksheet
                 self.tasks = 0
                 self.count = 0
                 self.words=[]
@@ -156,7 +156,7 @@ class LW():
                         # self.__play2(r'D:\0COCO\本科\大二上学期\英语三\Datas\right.mp3', 0.2)
                         # time.sleep(1)
                         mp3file = word[0] + '.mp3'
-                        self.__PlayMp3(mp3file)
+                        self.__PlayMp3(mp3file, wait=True)
                 elif s == '##quit':
                         flag = 2
                 else:
@@ -277,6 +277,8 @@ class LW():
                 playsound(filename, block = True)
 
         def __PlayMp3(self, filename, wait = False):
+                if not os.path.exists(filename):
+                        return
                 command = ["ffprobe.exe", "-i", filename]
                 result = subprocess.Popen(command,shell=True,stdout = subprocess.PIPE, stderr = subprocess.STDOUT)
                 out = result.stdout.read()
@@ -285,7 +287,7 @@ class LW():
                 if(not temp.find('Estimating duration from bitrate, this may be inaccurate') == -1):
                         self.__play2(filename, volume = 1)
                 else:
-                       self.__play(filename)
+                        self.__play(filename)
                 if(wait):
                         temp = re.findall(r'Duration: (\d+):(\d+):(\d+).(\d+),', temp)[0]
                         seconds = float('0.' + temp[3])
