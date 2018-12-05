@@ -6,6 +6,17 @@ class FN:
         self.filesName = []
         self.extensions = {}
         self.filesNum = []
+    
+    def getFilesWithType(self, TypeList):
+        self.analyzeExtensions()
+        Files = []
+        for i in self.filesName:
+            i = self.analyzeFN(i)
+            if i[2] in TypeList:
+                Files.append(i[0])
+        return Files
+
+
 
     def analyzeExtensions(self):
             self.filesName = []
